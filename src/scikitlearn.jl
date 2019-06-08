@@ -15,7 +15,7 @@ export SkGLRM, PCA, QPCA, NNMF, KMeans, RPCA
 # There are other ways of setting it up, but this seems like the simplest.
 mutable struct SkGLRM <: ScikitLearnBase.BaseEstimator
     # Hyperparameters: those will be passed to GLRM, so it doesn't matter if
-    # they're not mutable structd.
+    # they're not typed.
     fit_params # if fit_params != nothing, it has priority over abs_tol, etc.
     loss
     rx

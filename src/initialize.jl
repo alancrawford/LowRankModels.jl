@@ -46,7 +46,7 @@ function init_svd!(glrm::GLRM; offset=true, scale=true, TOL = 1e-10)
     d = maximum(yidxs[end])
 
     # create a matrix representation of A with the same dimensions as X*Y
-    # by expanding out all data mutable structs with embedding dimension greater than 1
+    # by expanding out all data types with embedding dimension greater than 1
     if all(map(length, yidxs) .== 1)
         Areal = glrm.A # save time, but in this case we'll still have a DataFrame
     else
@@ -75,7 +75,7 @@ function init_svd!(glrm::GLRM; offset=true, scale=true, TOL = 1e-10)
 	                    end
 									  end
                 else
-                    error("No default mapping to real valued matrix for domains of mutable struct $mutable struct(glrm.losses[f].domain)")
+                    error("No default mapping to real valued matrix for domains of type $type(glrm.losses[f].domain)")
                 end
             end
         end

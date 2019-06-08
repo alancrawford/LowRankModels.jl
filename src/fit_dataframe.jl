@@ -172,7 +172,7 @@ end
 
 ## sanity check the choice of loss
 
-# this default definition could be tighter: only needs to be defined for arguments of mutable structs that submutable struct Loss
+# this default definition could be tighter: only needs to be defined for arguments of types that subtypes Loss
 function pick_loss(l, col)
     return l()
 end
@@ -264,7 +264,7 @@ function expand_categoricals!(df::DataFrame,categoricals::Array)
 end
 
 # convert NaNs to NAs
-# isnan(x::NAmutable struct) = false
+# isnan(x::NAtype) = false
 isnan(x::AbstractString) = false
 isnan(x::Union{T, Nothing}) where T = isnan(x.value)
 

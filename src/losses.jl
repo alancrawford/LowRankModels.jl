@@ -13,26 +13,26 @@
 #   set of possible values of the data, etc.
 #
 #   Methods:
-#     `my_loss_mutable struct(args..., scale=1.0::Float64;
-#                   domain=natural_Domain(args[range]...), kwargs...) ::my_loss_mutable struct`
+#     `my_loss_type(args..., scale=1.0::Float64;
+#                   domain=natural_Domain(args[range]...), kwargs...) ::my_loss_type`
 #           Constructor for the loss mutable struct. The first few arguments are parameters for
 #           which there isn't a rational default (a loss may not need any of these).
 #           The last positional argument should be the scale, which should default to 1.
 #           There must be a default domain which is a Domain, which may take arguments from
 #           the list of positional arguments. Parameters besides the scale for which there are
 #           reasonable defaults should be included as keyword arguments (there may be none).
-#     `evaluate(l::my_loss_mutable struct, u::Float64, a::Number) ::Float64`
+#     `evaluate(l::my_loss_type, u::Float64, a::Number) ::Float64`
 #           Evaluates the function l(u,a) where u is the approximation of a
-#     `grad(l::my_loss_mutable struct, u::Float64, a::Number) ::Float64`
+#     `grad(l::my_loss_type, u::Float64, a::Number) ::Float64`
 #           Evaluates the gradient of the loss at the given point (u,a)
 
 #   In addition, loss functions should preferably implement methods:
-#     `M_estimator(l::my_loss_mutable struct, a::AbstractArray) ::Float64`
+#     `M_estimator(l::my_loss_type, a::AbstractArray) ::Float64`
 #           Finds uₒ = argmin ∑l(u,aᵢ) which is the best single estimate of the array `a`
 #           If `M_estimator` is not implemented, a live optimization procedure will be used when this function is
 #           called in order to compute loss function scalings. The live optimization may be slow, so an analytic
 #           implementation is preferable.
-#     `impute(d::Domain, l::my_loss_mutable struct, u::Array{Float64})` (in impute_and_err.jl)
+#     `impute(d::Domain, l::my_loss_type, u::Array{Float64})` (in impute_and_err.jl)
 #           Finds a = argmin l(u,a), the most likely value for an observation given a parameter u
 
 import Base: *, convert

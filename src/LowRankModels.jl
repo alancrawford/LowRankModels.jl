@@ -19,7 +19,7 @@ include("impute_and_err.jl")
 include("regularizers.jl")
 include("convergence.jl")
 
-# define basic data mutable struct(s)
+# define basic data type(s)
 include("glrm.jl")
 include("shareglrm.jl")
 
